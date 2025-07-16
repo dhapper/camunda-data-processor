@@ -6,25 +6,25 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Map;
 
 @RestController
-public class TestController {
+public class UserFormController {
+
 
     private final ZeebeClient zeebeClient;
+    private Map<String, Object> data = null;
 
-    public TestController(ZeebeClient zeebeClient) {
+    public UserFormController(ZeebeClient zeebeClient) {
         this.zeebeClient = zeebeClient;
     }
 
-    private Map<String, Object> data = null;
-
     // GET endpoint
-    @GetMapping("/api/test")
+    @GetMapping("/api/userform")
     public String getData() {
         return data != null ? data.get("firstName").toString() : "No data available.";
     }
 
-    @PostMapping("/api/test")
-    public String testEndpoint(@RequestBody Map<String, Object> payload) {
-        System.out.println("Received test payload: " + payload);
+    @PostMapping("/api/userform")
+    public String userformEndpoint(@RequestBody Map<String, Object> payload) {
+        System.out.println("Received payload: " + payload);
         data = payload;
 
 
